@@ -20,6 +20,20 @@ mindtct <- function(imgfiles, outputdir = ".", silent = FALSE, options = "") {
                    options))
   }, mc.cores = parallel::detectCores(), mc.preschedule = FALSE)
 
-  return(file.path(outputdir, paste0(imgnames)))
+  return(list(out = file.path(outputdir, paste0(imgnames)),
+              imgfiles = imgfiles))
+}
+
+#' @import vroom tibble tidyr dplyr
+#' @export
+tidyMinutiae <- function(mindtct_out) {
+  minutiae = lapply(mindtct_out$out, function(path) {
+    suppressMessages(vroom(file.path(path, "out.xyt"), col_names = FALSE))
+  })
+  names(minutiae) = mindtct_out$imgfiles
+  df = bind_rows(minutiae, .id="source")
+  colnames(df) = c("source", "x", "y", "theta", "quality")
+
+  return(df)
 }
 

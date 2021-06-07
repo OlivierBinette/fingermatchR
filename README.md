@@ -46,6 +46,15 @@ devtools::install_github("forensic-science/fingermatchR")
 
 ``` r
 library(fingermatchR)
+library(dplyr)
+#> 
+#> Attaching package: 'dplyr'
+#> The following objects are masked from 'package:stats':
+#> 
+#>     filter, lag
+#> The following objects are masked from 'package:base':
+#> 
+#>     intersect, setdiff, setequal, union
 ```
 
 Define location of NBIS executables:
@@ -59,9 +68,27 @@ Detect minutiae using mindtct:
 
 ``` r
 imgfiles = list.files("data-raw", pattern = "*.png", full.names = TRUE)
+
+# Raw mindtct output
 out = mindtct(imgfiles, outputdir="data-raw")
 #> Running mindtct on 3 image files.
+
+# Tidy minutiae descriptions
+minutiae = tidyMinutiae(out)
 ```
+
+Plot fingerprint images with detected minutiae: N.B. this is not working
+properly right now.
+
+``` r
+img <- imager::load.image("data-raw/00001000_plain_500_02.png")
+par(mar=c(0,0,0,0))
+plot(img, axes=FALSE)
+df = minutiae %>% filter(source == "data-raw/00001000_plain_500_02.png")
+points(df$x, df$y, col=2)
+```
+
+<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
 
 ## References
 
