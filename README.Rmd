@@ -1,27 +1,31 @@
+---
+output: github_document
+---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
 
 # fingermatchR
 
 <!-- badges: start -->
-
-[![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![R-CMD-check](https://github.com/forensic-science/fingermatchR/workflows/R-CMD-check/badge.svg)](https://github.com/forensic-science/fingermatchR/actions)
 <!-- badges: end -->
 
-**FingermatchR** provides fingerprint matching tools based on NIST’s
-MINDTCT and BOZORTH3 algorithms, as released in [NIST’s Biometrics Image
-Software suite
-(NBIS)](https://www.nist.gov/services-resources/software/nist-biometric-image-software-nbis).
+**FingermatchR** provides fingerprint matching tools based on NIST's MINDTCT and BOZORTH3 algorithms, as released in [NIST's Biometrics Image Software suite (NBIS)](https://www.nist.gov/services-resources/software/nist-biometric-image-software-nbis).
 
 ## Installation
 
-Make sure you have NBIS installed with binaries available in PATH. Check
-in particular that you have the `mindtct` and `bozorth3` executables
-installed and available:
-
-``` bash
+Make sure you have NBIS installed with binaries available in PATH. Check in particular that you have the `mindtct` and `bozorth3` executables installed and available:
+```bash
 $ mindtct
   Usage : mindtct [-b] [-m1] <finger_img_in> <oroot>
         -b  = contrast boost image
@@ -32,10 +36,10 @@ $ bozorth3
    To compute match scores for fingerprint pairs:
         bozorth3 [options] probefile.xyt galleryfile.xyt [probefile galleryfile ...]
         ...
+
 ```
 
-You can install the development version of **fingermatchR** from
-[GitHub](https://github.com/) with:
+You can install the development version of **fingermatchR** from [GitHub](https://github.com/) with:
 
 ``` r
 if (!require(devtools)) install.packages("devtools")
@@ -44,27 +48,25 @@ devtools::install_github("forensic-science/fingermatchR")
 
 ## Examples
 
-``` r
+```{r}
 library(fingermatchR)
 ```
 
 Define location of NBIS executables:
 
-``` r
+```{r}
 # This is required if NBIS executables are not available in PATH.
 options(NBIS_bin = "/home/olivier/Desktop/Research/forensic-science/NBIS/src/bin")
 ```
 
 Detect minutiae using mindtct:
 
-``` r
+```{r}
 imgfiles = list.files("data-raw", pattern = "*.png", full.names = TRUE)
 out = mindtct(imgfiles, outputdir="data-raw")
-#> Running mindtct on 3 image files.
 ```
+
 
 ## References
 
--   Watson et al. (2007) [User’s Guide to NIST Biometric Image Software
-    (NBIS)](https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nistir7392.pdf).
-    National Institute of Standards and Technology.
+- Watson et al. (2007) [User's Guide to NIST Biometric Image Software (NBIS)](https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nistir7392.pdf). National Institute of Standards and Technology.
