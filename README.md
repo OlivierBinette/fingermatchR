@@ -72,7 +72,7 @@ minutiae = tidyMinutiae(out)
 Plot fingerprint image and its binarization with detected minutiae:
 
 ``` r
-plotMinutiae(out[1:2, ])
+plotMinutiae(out[c(1,3), ])
 ```
 
 <img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
