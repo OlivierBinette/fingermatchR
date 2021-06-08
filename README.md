@@ -46,6 +46,8 @@ devtools::install_github("forensic-science/fingermatchR")
 
 ``` r
 library(fingermatchR)
+#> Warning: replacing previous import 'imager::fill' by 'tidyr::fill' when loading
+#> 'fingermatchR'
 library(dplyr)
 ```
 
@@ -72,16 +74,7 @@ minutiae = tidyMinutiae(out)
 Plot fingerprint image and its binarization with detected minutiae:
 
 ``` r
-img <- imager::load.image("data-raw/00001000_plain_500_02.png")
-binaryImage <- hexView::readRaw("data-raw/00001000_plain_500_02/out.brw")
-
-image_matrix <- matrix(binaryImage$fileRaw, nrow=ncol(img), ncol=nrow(img), byrow =TRUE)
-
-par(mar=c(0,0,0,0), mfrow=c(1,2))
-plot(img, axes=FALSE)
-plot(as.raster(image_matrix))
-df = minutiae %>% filter(source == "data-raw/00001000_plain_500_02.png")
-points(df$x, df$y, col=2)
+plotMinutiae(imgfiles[[1]])
 ```
 
 <img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />

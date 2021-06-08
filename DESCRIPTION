@@ -8,7 +8,7 @@ Authors@R:
            email = "olivier.binette@gmail.com")
 Description: Fingerprint matching tools based on NIST's MINDTCT and BOZORTH3 algorithms.
 License: MIT + file LICENSE
-Imports: here, parallel
+Imports: here, parallel, hexView, imager, dplyr
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
