@@ -82,4 +82,5 @@ plotMinutiae(out[c(1,3), ])
 
 ## References
 
+-   Watson et al. (2007) [User's Guide to Export ControlledDistribution of NIST Biometric Image Software (NBIS-EC)](https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nistir7391.pdf). National Institute of Standards and Technology.
 - Watson et al. (2007) [User's Guide to NIST Biometric Image Software (NBIS)](https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nistir7392.pdf). National Institute of Standards and Technology.
