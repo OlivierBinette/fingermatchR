@@ -56,6 +56,8 @@ Define location of NBIS executables:
 options(NBIS_bin = "/home/olivier/Desktop/Research/forensic-science/NBIS/src/bin")
 ```
 
+### Minutiae detection
+
 Detect minutiae using mindtct:
 
 ``` r
@@ -72,6 +74,7 @@ minutiae = tidyMinutiae(out)
 Plot fingerprint image and its binarization with detected minutiae:
 
 ``` r
+# Plain and rolled index fingerprints for the same individual
 plotMinutiae(out[c(1,3), ])
 ```
 
