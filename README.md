@@ -69,13 +69,17 @@ out = mindtct(imgfiles, outputdir="data-raw")
 minutiae = tidyMinutiae(out)
 ```
 
-Plot fingerprint images with detected minutiae: N.B. this is not working
-properly right now.
+Plot fingerprint image and its binarization with detected minutiae:
 
 ``` r
 img <- imager::load.image("data-raw/00001000_plain_500_02.png")
-par(mar=c(0,0,0,0))
+binaryImage <- hexView::readRaw("data-raw/00001000_plain_500_02/out.brw")
+
+image_matrix <- matrix(binaryImage$fileRaw, nrow=ncol(img), ncol=nrow(img), byrow =TRUE)
+
+par(mar=c(0,0,0,0), mfrow=c(1,2))
 plot(img, axes=FALSE)
+plot(as.raster(image_matrix))
 df = minutiae %>% filter(source == "data-raw/00001000_plain_500_02.png")
 points(df$x, df$y, col=2)
 ```
