@@ -47,14 +47,6 @@ devtools::install_github("forensic-science/fingermatchR")
 ``` r
 library(fingermatchR)
 library(dplyr)
-#> 
-#> Attaching package: 'dplyr'
-#> The following objects are masked from 'package:stats':
-#> 
-#>     filter, lag
-#> The following objects are masked from 'package:base':
-#> 
-#>     intersect, setdiff, setequal, union
 ```
 
 Define location of NBIS executables:
