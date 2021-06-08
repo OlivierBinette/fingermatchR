@@ -13,7 +13,7 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 **FingermatchR** provides fingerprint matching tools based on NIST’s
 MINDTCT and BOZORTH3 algorithms, as released in [NIST’s Biometrics Image
 Software suite
-(NBIS)](https://www.nist.gov/services-resources/software/nist-biometric-image-software-nbis). 
+(NBIS)](https://www.nist.gov/services-resources/software/nist-biometric-image-software-nbis).
 
 ## Installation
 
@@ -46,8 +46,6 @@ devtools::install_github("forensic-science/fingermatchR")
 
 ``` r
 library(fingermatchR)
-#> Warning: replacing previous import 'imager::fill' by 'tidyr::fill' when loading
-#> 'fingermatchR'
 library(dplyr)
 ```
 
@@ -74,14 +72,13 @@ minutiae = tidyMinutiae(out)
 Plot fingerprint image and its binarization with detected minutiae:
 
 ``` r
-plotMinutiae(imgfiles[[1]])
+plotMinutiae(out[1:2, ])
 ```
 
 <img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
 
 ## References
 
--   Watson et al. (2007) [User's Guide to Export ControlledDistribution of NIST Biometric Image Software (NBIS-EC)](https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nistir7391.pdf). National Institute of Standards and Technology.
 -   Watson et al. (2007) [User’s Guide to NIST Biometric Image Software
     (NBIS)](https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nistir7392.pdf).
     National Institute of Standards and Technology.
