@@ -74,6 +74,8 @@ plotMinutiae(out[c(1,3), ])
 
 <img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
 
+Compute all-to-all fingerprint match scores:
+
 ``` r
 matchscores(out, out, outputdir = "data-raw/scores")
 #> # A tibble: 9 x 3
