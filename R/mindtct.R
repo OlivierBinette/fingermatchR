@@ -110,3 +110,49 @@ plotMinutiae <- function(mindtct_out, maxPlots = 5, col = 3, lwd = 1.5) {
     title("Quality", line = -2, )
   }
 }
+
+
+#' Compute fingerprint matching scores
+#' 
+#' Compute pairwise fingerprint matching scores using `bozorth3`.
+#' 
+#' @usage matchscores(mindtct_out_A, mindtct_out_B, outputdir = ".", options = "")
+#' 
+#' @param mindtct_out_A tibble with a column named "out" containing paths to `mindtct` output directories.
+#' @param mindtct_out_B tibble with a column named "out" containing paths to `mindtct` output directories.
+#' @param outputdir directory where scores and configuration files are saved.
+#' @param options options and flags for the `bozorth3` program.
+#' 
+#' @export
+matchscores <- function(mindtct_out_probes, mindtct_out_gallery, outputdir = ".", options = "") {
+  FILENAME_SCORES = "bozorth3_scores"
+  
+  # Prepare probes.lis
+  matesPath = file.path(outputdir, "mates.lis")
+  file.create(matesPath)
+  mates.lis = file(matesPath)
+  
+  probes = file.path(mindtct_out_probes$out, "out.xyt")
+  gallery = file.path(mindtct_out_gallery$out, "out.xyt")
+  
+  writeLines(c(t(as.matrix(expand.grid(probes, gallery)))), con = mates.lis)
+  close(mates.lis)
+  
+  executable <- if (!is.null(getOption("NBIS_bin"))) file.path(getOption("NBIS_bin"), "bozorth3") else "bozorth3"
+  system2(executable, 
+          args = c("-A outfmt=s",
+                   "-D", outputdir,
+                   "-o", FILENAME_SCORES,
+                   options,
+                   "-M", matesPath))
+  
+  scoresFile = file(file.path(outputdir, FILENAME_SCORES))
+  scores = readLines(con = scoresFile)
+  close(scoresFile)
+  
+  bind_cols(score = scores, 
+            crossing(probe_index = 1:nrow(mindtct_out_probes), 
+                     gallery_index = 1:nrow(mindtct_out_gallery))
+            )
+}
+

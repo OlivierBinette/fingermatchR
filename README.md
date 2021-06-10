@@ -22,16 +22,10 @@ in particular that you have the `mindtct` and `bozorth3` executables
 installed and available:
 
 ``` bash
-$ mindtct
-  Usage : mindtct [-b] [-m1] <finger_img_in> <oroot>
-        -b  = contrast boost image
-        -m1 = output "*.xyt" according to ANSI INCITS 378-2004
-        ...
-$ bozorth3
-  Usage:
-   To compute match scores for fingerprint pairs:
-        bozorth3 [options] probefile.xyt galleryfile.xyt [probefile galleryfile ...]
-        ...
+$ mindtct -version && bozorth3 -version
+Standard Version: ANSI/NIST-ITL 1-2007
+NBIS Non-Export Control Software Version: Release 5.0.0
+...
 ```
 
 You can install the development version of **fingermatchR** from
@@ -49,11 +43,11 @@ library(fingermatchR)
 library(dplyr)
 ```
 
-Define location of NBIS executables:
+Optionally, define location of NBIS executables:
 
 ``` r
 # This is required if NBIS executables are not available in PATH.
-options(NBIS_bin = "/home/olivier/Desktop/Research/forensic-science/NBIS/src/bin")
+options(NBIS_bin = "/usr/local/NBIS/bin")
 ```
 
 ### Minutiae detection
@@ -79,6 +73,22 @@ plotMinutiae(out[c(1,3), ])
 ```
 
 <img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
+
+``` r
+matchscores(out, out, outputdir = "data-raw/scores")
+#> # A tibble: 9 x 3
+#>   score probe_index gallery_index
+#>   <chr>       <int>         <int>
+#> 1 194             1             1
+#> 2 3               1             2
+#> 3 31              1             3
+#> 4 3               2             1
+#> 5 512             2             2
+#> 6 7               2             3
+#> 7 31              3             1
+#> 8 7               3             2
+#> 9 622             3             3
+```
 
 ## References
 
