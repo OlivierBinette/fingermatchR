@@ -123,6 +123,7 @@ plotMinutiae <- function(mindtct_out, maxPlots = 5, col = 3, lwd = 1.5) {
 #' @param outputdir directory where scores and configuration files are saved.
 #' @param options options and flags for the `bozorth3` program.
 #'
+#' @import tidyr
 #' @export
 matchscores <- function(mindtct_out_probes, mindtct_out_gallery, outputdir = ".", options = "") {
   FILENAME_SCORES = "bozorth3_scores"
@@ -133,9 +134,17 @@ matchscores <- function(mindtct_out_probes, mindtct_out_gallery, outputdir = "."
   mates.lis = file(matesPath)
 
   probes = file.path(mindtct_out_probes$out, "out.xyt")
-  gallery = file.path(mindtct_out_gallery$out, "out.xyt")
 
-  writeLines(c(t(as.matrix(expand.grid(probes, gallery)))), con = mates.lis)
+  if (!missing(mindtct_out_gallery)) {
+    gallery = file.path(mindtct_out_gallery$out, "out.xyt")
+    writeLines(c(t(as.matrix(expand.grid(probes, gallery)))), con = mates.lis)
+  } else {
+    pairs = combn(1:nrow(mindtct_out_probes), 2)
+    writeLines(
+      c(sapply(1:ncol(pairs), function(i) c(probes[pairs[1,i]], probes[pairs[2,i]]))),
+      con = mates.lis)
+    ngallery = nrow(mindtct_out_probes)
+  }
   close(mates.lis)
 
   executable <- if (!is.null(getOption("NBIS_bin"))) file.path(getOption("NBIS_bin"), "bozorth3") else "bozorth3"
@@ -150,9 +159,13 @@ matchscores <- function(mindtct_out_probes, mindtct_out_gallery, outputdir = "."
   scores = readLines(con = scoresFile)
   close(scoresFile)
 
-  bind_cols(score = scores,
-            crossing(probe_index = 1:nrow(mindtct_out_probes),
-                     gallery_index = 1:nrow(mindtct_out_gallery))
-            )
+  if (!missing(mindtct_out_gallery)) {
+    bind_cols(score = scores,
+              tidyr::crossing(probe_index = 1:nrow(mindtct_out_probes),
+                              gallery_index = 1:nrow(mindtct_out_gallery))
+    )
+  } else {
+    bind_cols(score=scores, probe_index = pairs[1,], gallery_index = pairs[2,])
+  }
 }
 

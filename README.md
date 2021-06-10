@@ -74,12 +74,22 @@ plotMinutiae(out[c(1,3), ])
 
 <img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
 
-Compute all-to-all fingerprint match scores:
+Compute pairwise fingerprint match scores:
 
 ``` r
-dir.create("data-raw/scores")
-#> Warning in dir.create("data-raw/scores"): 'data-raw/scores' already exists
-matchscores(out, out, outputdir = "data-raw/scores")
+matchscores(out, outputdir = "data-raw")
+#> # A tibble: 3 x 3
+#>   score probe_index gallery_index
+#>   <chr>       <int>         <int>
+#> 1 3               1             2
+#> 2 31              1             3
+#> 3 7               2             3
+```
+
+Compute all-to-all fingerprint match scores between two lists:
+
+``` r
+matchscores(out, out, outputdir = "data-raw")
 #> # A tibble: 9 x 3
 #>   score probe_index gallery_index
 #>   <chr>       <int>         <int>
