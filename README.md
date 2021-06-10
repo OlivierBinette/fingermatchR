@@ -47,7 +47,7 @@ Optionally, define location of NBIS executables:
 
 ``` r
 # This is required if NBIS executables are not available in PATH.
-options(NBIS_bin = "/usr/local/NBIS/bin")
+options(NBIS_bin = "/home/olivier/Desktop/Research/forensic-science/NBIS/src/bin")
 ```
 
 ### Minutiae detection
@@ -77,6 +77,8 @@ plotMinutiae(out[c(1,3), ])
 Compute all-to-all fingerprint match scores:
 
 ``` r
+dir.create("data-raw/scores")
+#> Warning in dir.create("data-raw/scores"): 'data-raw/scores' already exists
 matchscores(out, out, outputdir = "data-raw/scores")
 #> # A tibble: 9 x 3
 #>   score probe_index gallery_index
