@@ -1,5 +1,5 @@
-#' Convert RGB jpg images to 8 bit png
-#'
+#' Convert RGB jpg images to 8 bit grayscale png
+#' 
 #' @import jpeg png tools assert
 #' @export
 jpg_to_png <- function(input, outputdir, create.dir = FALSE, lazy = TRUE) {
