@@ -167,4 +167,3 @@ matchscores <- function(mindtct_out_probes, mindtct_out_gallery, outputdir = "."
     bind_cols(score=scores, probe_index = pairs[1,], gallery_index = pairs[2,])
   }
 }
-
