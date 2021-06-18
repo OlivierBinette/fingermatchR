@@ -143,7 +143,6 @@ matchscores <- function(mindtct_out_probes, mindtct_out_gallery, outputdir = "."
     writeLines(
       c(sapply(1:ncol(pairs), function(i) c(probes[pairs[1,i]], probes[pairs[2,i]]))),
       con = mates.lis)
-    ngallery = nrow(mindtct_out_probes)
   }
   close(mates.lis)
 

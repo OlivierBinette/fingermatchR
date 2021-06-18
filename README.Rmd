@@ -34,7 +34,7 @@ NBIS Non-Export Control Software Version: Release 5.0.0
 
 You can install the development version of **fingermatchR** from [GitHub](https://github.com/) with:
 
-``` r
+```{r}
 if (!require(devtools)) install.packages("devtools")
 devtools::install_github("forensic-science/fingermatchR")
 ```
@@ -66,6 +66,7 @@ out = mindtct(imgfiles, outputdir="data-raw")
 # Tidy minutiae descriptions
 minutiae = tidyMinutiae(out)
 ```
+
 Plot fingerprint image and its binarization with detected minutiae:
 
 ```{r}
@@ -85,8 +86,7 @@ Compute all-to-all fingerprint match scores between two lists:
 matchscores(out, out, outputdir = "data-raw")
 ```
 
-
 ## References
 
--   Watson et al. (2007) [User's Guide to Export ControlledDistribution of NIST Biometric Image Software (NBIS-EC)](https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nistir7391.pdf). National Institute of Standards and Technology.
+- Watson et al. (2007) [User's Guide to Export ControlledDistribution of NIST Biometric Image Software (NBIS-EC)](https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nistir7391.pdf). National Institute of Standards and Technology.
 - Watson et al. (2007) [User's Guide to NIST Biometric Image Software (NBIS)](https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nistir7392.pdf). National Institute of Standards and Technology.

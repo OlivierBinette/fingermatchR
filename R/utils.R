@@ -21,7 +21,7 @@ jpg_to_png <- function(input, outputdir, create.dir = FALSE, lazy = TRUE) {
     png = file.path(outputdir, paste0(imgnames[[i]], ".png"))
     if (!lazy || !file.exists(png)) {
       jpg = readJPEG(imgfiles[[i]])
-      writePNG(jpg[ , ,1], target=png)
+      writePNG(jpg[ , ,1], target = png)
     }
   }
 
