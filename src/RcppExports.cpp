@@ -10,21 +10,21 @@ Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
 Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
-// FJFX_extract_minutiae
-int FJFX_extract_minutiae(std::string inputfile, std::string outputfile);
-RcppExport SEXP _fingermatchR_FJFX_extract_minutiae(SEXP inputfileSEXP, SEXP outputfileSEXP) {
+// FJFX_extract_minutiae_from_PGM
+int FJFX_extract_minutiae_from_PGM(std::string inputfile, std::string outputfile);
+RcppExport SEXP _fingermatchR_FJFX_extract_minutiae_from_PGM(SEXP inputfileSEXP, SEXP outputfileSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< std::string >::type inputfile(inputfileSEXP);
     Rcpp::traits::input_parameter< std::string >::type outputfile(outputfileSEXP);
-    rcpp_result_gen = Rcpp::wrap(FJFX_extract_minutiae(inputfile, outputfile));
+    rcpp_result_gen = Rcpp::wrap(FJFX_extract_minutiae_from_PGM(inputfile, outputfile));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_fingermatchR_FJFX_extract_minutiae", (DL_FUNC) &_fingermatchR_FJFX_extract_minutiae, 2},
+    {"_fingermatchR_FJFX_extract_minutiae_from_PGM", (DL_FUNC) &_fingermatchR_FJFX_extract_minutiae_from_PGM, 2},
     {NULL, NULL, 0}
 };
 

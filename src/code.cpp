@@ -94,9 +94,8 @@ int fjfx_create_fmd_from_raw(
   return FJFX_SUCCESS;
 }
 
-
 // [[Rcpp::export]]
-int FJFX_extract_minutiae(std::string inputfile, std::string outputfile) {
+int FJFX_extract_minutiae_from_PGM(std::string inputfile, std::string outputfile) {
   FILE *fp = 0;
   int height, width, gray;
   unsigned int size;
