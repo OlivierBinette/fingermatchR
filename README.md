@@ -10,10 +10,12 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 [![R-CMD-check](https://github.com/forensic-science/fingermatchR/workflows/R-CMD-check/badge.svg)](https://github.com/forensic-science/fingermatchR/actions)
 <!-- badges: end -->
 
-**FingermatchR** provides fingerprint matching tools based on NIST’s
+**fingermatchR** provides fingerprint matching tools based on NIST’s
 MINDTCT and BOZORTH3 algorithms, as released in [NIST’s Biometrics Image
 Software suite
 (NBIS)](https://www.nist.gov/services-resources/software/nist-biometric-image-software-nbis).
+It also provides R bindings to the [FingerJet minutiae extraction
+tool](https://github.com/FingerJetFXOSE/FingerJetFXOSE).
 
 ## Installation
 
@@ -71,7 +73,7 @@ Plot fingerprint image and its binarization with detected minutiae:
 
 ``` r
 # Plain and rolled index fingerprints for the same individual
-plotMinutiae(out[c(1,3), ])
+plotMinutiae(out[1:3, ])
 ```
 
 <img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" />
@@ -124,7 +126,7 @@ Plot fingerprint image and its binarization with detected minutiae:
 
 ``` r
 # Plain and rolled index fingerprints for the same individual
-plotMinutiae(fingerjet[1:2, ])
+plotMinutiae(fingerjet[1:3, ])
 ```
 
 <img src="man/figures/README-unnamed-chunk-10-1.png" width="100%" />
