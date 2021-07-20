@@ -47,7 +47,8 @@ Optionally, define location of NBIS executables:
 
 ``` r
 # This is required if NBIS executables are not available in PATH.
-options(NBIS_bin = "/home/olivier/Desktop/Research/forensic-science/NBIS/src/bin")
+#options(NBIS_bin = "/home/olivier/Desktop/Research/forensic-science/NBIS/src/bin")
+options(NBIS_bin = "/usr/local/NBIS/bin")
 ```
 
 ### Minutiae detection
@@ -59,7 +60,8 @@ imgfiles = list.files("data-raw", pattern = "*.png", full.names = TRUE)
 
 # Raw mindtct output
 out = mindtct(imgfiles, outputdir="data-raw")
-#> Running mindtct on 3 image files.
+#> ℹ Running mindtct on 3 image files...
+#> ✓ done running mindtct.
 
 # Tidy minutiae descriptions
 minutiae = tidyMinutiae(out)
@@ -72,7 +74,9 @@ Plot fingerprint image and its binarization with detected minutiae:
 plotMinutiae(out[c(1,3), ])
 ```
 
-<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" />
+
+### Match scores
 
 Compute pairwise fingerprint match scores:
 
@@ -102,6 +106,39 @@ matchscores(out, out, outputdir = "data-raw")
 #> 7 31              3             1
 #> 8 7               3             2
 #> 9 622             3             3
+```
+
+### Using the FingerJet minutiae extration tool
+
+Detect minutiae using FingerJet:
+
+``` r
+imgfiles = list.files("data-raw", pattern = "*.png", full.names = TRUE)
+
+# Raw mindtct output
+fingerjet = fj_minutiae(imgfiles, outputdir="data-raw/fingerjet")
+#> Running FingerJet minutiae extrator on 3 image files.
+```
+
+Plot fingerprint image and its binarization with detected minutiae:
+
+``` r
+# Plain and rolled index fingerprints for the same individual
+plotMinutiae(fingerjet[1:2, ])
+```
+
+<img src="man/figures/README-unnamed-chunk-10-1.png" width="100%" />
+
+Compute pairwise fingerprint match scores:
+
+``` r
+matchscores(fingerjet, outputdir = "data-raw/fingerjet")
+#> # A tibble: 3 x 3
+#>   score probe_index gallery_index
+#>   <chr>       <int>         <int>
+#> 1 0               1             2
+#> 2 22              1             3
+#> 3 11              2             3
 ```
 
 ## References
