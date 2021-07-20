@@ -29,6 +29,9 @@ fj_minutiae <- function(imgfiles, outputdir = ".", silent = FALSE, options = "",
     close(con)
     
     FJFX_extract_minutiae_from_PGM(tmp, file.path(outputdir, imgnames[[i]], "out.ist"))
+    
+    if (file.exists(file.path(outputdir, imgnames[[i]], "out.xyt"))) file.remove(file.path(outputdir, imgnames[[i]], "out.xyt"))
+    fmr_to_xyt(file.path(outputdir, imgnames[[i]], "out.ist"), "ISO_2005", file.path(outputdir, imgnames[[i]], "out.xyt"))
   })
   
   suppressWarnings(file.remove(tmp))

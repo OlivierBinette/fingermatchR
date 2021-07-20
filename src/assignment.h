@@ -35,8 +35,8 @@
 /// http://en.wikipedia.org/wiki/Assignment_problem
 
 #include <algorithm>
-#include <integer_limits.h>
-#include <intmath.h>
+#include "integer_limits.h"
+#include "intmath.h"
 #include <bitset>
 
 namespace FingerJetFxOSE {

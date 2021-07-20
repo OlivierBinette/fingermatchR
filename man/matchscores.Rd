@@ -4,16 +4,16 @@
 \alias{matchscores}
 \title{Compute fingerprint matching scores}
 \usage{
-matchscores(mindtct_out_A, mindtct_out_B, outputdir = ".", options = "")
+matchscores(out_probes, out_gallery, outputdir = ".", options = "")
 }
 \arguments{
+\item{out_probes}{tibble with a column named "out" containing paths to \code{mindtct} output directories.}
+
+\item{out_gallery}{tibble with a column named "out" containing paths to \code{mindtct} output directories.}
+
 \item{outputdir}{directory where scores and configuration files are saved.}
 
 \item{options}{options and flags for the \code{bozorth3} program.}
-
-\item{mindtct_out_A}{tibble with a column named "out" containing paths to \code{mindtct} output directories.}
-
-\item{mindtct_out_B}{tibble with a column named "out" containing paths to \code{mindtct} output directories.}
 }
 \description{
 Compute pairwise fingerprint matching scores using \code{bozorth3}.

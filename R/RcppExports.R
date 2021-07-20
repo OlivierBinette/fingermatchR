@@ -5,3 +5,90 @@ FJFX_extract_minutiae_from_PGM <- function(inputfile, outputfile) {
     .Call(`_fingermatchR_FJFX_extract_minutiae_from_PGM`, inputfile, outputfile)
 }
 
+#' Print fingerprint minutiae record
+#'
+#' Print fingerprint minutiae record as specified in ANSI/INCITS 378-2004 and
+#' ISO/IEC 19794-2:2005. Note that ANSI/INCITS 378-2004 and ISO/IEC 19794-2:2005
+#' are older standards which may not be compatible with recent corrections.
+#'
+#' @usage printFMR(filepath, type)
+#'
+#' @param filepath character path to file containing the fingerprint minutiae
+#' record (e.g. a "*.ist" file).
+#' @param type character description of the record standard; one of the following:
+#' - "ANSI_2004": ANSI/INCITS 378-2004 format
+#' - "ANSI_2007": ANSI/INCITS 378-2007 format
+#' - "ISO_2005": ISO/IEC 19794-2:2005 format
+#' - "ISONC_2005": ISO/IEC 19794-2:2005 normal card format
+#' - "ISOCC_2005": ISO/IEC 19794-2:2005 compact card format
+#'
+#' @note This R package is based on [NIST's BiomDI software](https://www.nist.gov/services-resources/software/biomdi-software-tools-supporting-standard-biometric-data-interchange) and includes the
+#' libfmr C library. This function is adapted from the prfmr program.
+#'
+#' @export
+print_fmr <- function(filepath, type) {
+    invisible(.Call(`_fingermatchR_print_fmr`, filepath, type))
+}
+
+#' Read fingerprint minutiae records
+#'
+#' Read fingerprint minutiae records as specified in ANSI/INCITS 378-2004 and
+#' ISO/IEC 19794-2:2005. The record is returned as a nested list structured as described
+#' in the details section. Note that ANSI/INCITS 378-2004 and ISO/IEC 19794-2:2005
+#' are older standards which may not be compatible with recent corrections.
+#'
+#' @usage readFMR(filepath, type)
+#'
+#' @param filepath character path to file containing the fingerprint minutiae
+#' record (e.g. a "*.ist" file).
+#' @param type character description of the record standard; one of the following:
+#' - "ANSI_2004": ANSI/INCITS 378-2004 format
+#' - "ANSI_2007": ANSI/INCITS 378-2007 format
+#' - "ISO_2005": ISO/IEC 19794-2:2005 format
+#' - "ISONC_2005": ISO/IEC 19794-2:2005 normal card format
+#' - "ISOCC_2005": ISO/IEC 19794-2:2005 compact card format
+#'
+#' @return fingerprint minutiae record as a nested list with the following elements:
+#' - format_std
+#' - product_identifier_owner
+#' - product_identifier_type
+#' - scanner_id
+#' - compliance
+#' - x_image_size
+#' - y_image_size
+#' - x_resolution
+#' - y_resolution
+#' - num_views
+#' - finger_views: list of fingerprint views each structured as follows:
+#'     - format_std
+#'     - finger_number
+#'     - view_number
+#'     - impression_type
+#'     - finger_quality
+#'     - number_of_minutiae
+#'     - x_image_size
+#'     - y_image_size
+#'     - x_resolution
+#'     - y_resolution
+#'     - algorithm_id
+#'     - minutiae_data: list of minutiae data records each structured as follows:
+#'         - format_std
+#'         - index
+#'         - type
+#'         - x_coord
+#'         - y_coord
+#'         - angle
+#'         - quality
+#'
+#' @note This R package is based on [NIST's BiomDI software](https://www.nist.gov/services-resources/software/biomdi-software-tools-supporting-standard-biometric-data-interchange) and includes the
+#' libfmr C library. This function is adapted from the prfmr program.
+#'
+#' @export
+read_fmr_raw <- function(filepath, type) {
+    .Call(`_fingermatchR_read_fmr_raw`, filepath, type)
+}
+
+fmr_to_xyt <- function(filepath, type, outputpath) {
+    invisible(.Call(`_fingermatchR_fmr_to_xyt`, filepath, type, outputpath))
+}
+

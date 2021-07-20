@@ -22,9 +22,47 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// print_fmr
+void print_fmr(std::string filepath, std::string type);
+RcppExport SEXP _fingermatchR_print_fmr(SEXP filepathSEXP, SEXP typeSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type filepath(filepathSEXP);
+    Rcpp::traits::input_parameter< std::string >::type type(typeSEXP);
+    print_fmr(filepath, type);
+    return R_NilValue;
+END_RCPP
+}
+// read_fmr_raw
+Rcpp::List read_fmr_raw(std::string filepath, std::string type);
+RcppExport SEXP _fingermatchR_read_fmr_raw(SEXP filepathSEXP, SEXP typeSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type filepath(filepathSEXP);
+    Rcpp::traits::input_parameter< std::string >::type type(typeSEXP);
+    rcpp_result_gen = Rcpp::wrap(read_fmr_raw(filepath, type));
+    return rcpp_result_gen;
+END_RCPP
+}
+// fmr_to_xyt
+void fmr_to_xyt(std::string filepath, std::string type, std::string outputpath);
+RcppExport SEXP _fingermatchR_fmr_to_xyt(SEXP filepathSEXP, SEXP typeSEXP, SEXP outputpathSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type filepath(filepathSEXP);
+    Rcpp::traits::input_parameter< std::string >::type type(typeSEXP);
+    Rcpp::traits::input_parameter< std::string >::type outputpath(outputpathSEXP);
+    fmr_to_xyt(filepath, type, outputpath);
+    return R_NilValue;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_fingermatchR_FJFX_extract_minutiae_from_PGM", (DL_FUNC) &_fingermatchR_FJFX_extract_minutiae_from_PGM, 2},
+    {"_fingermatchR_print_fmr", (DL_FUNC) &_fingermatchR_print_fmr, 2},
+    {"_fingermatchR_read_fmr_raw", (DL_FUNC) &_fingermatchR_read_fmr_raw, 2},
+    {"_fingermatchR_fmr_to_xyt", (DL_FUNC) &_fingermatchR_fmr_to_xyt, 3},
     {NULL, NULL, 0}
 };
 

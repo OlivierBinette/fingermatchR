@@ -11,9 +11,9 @@ mindtct(imgfiles, outputdir = ".", silent = FALSE, options = "", mc.cores = para
 
 \item{outputdir}{directory where mindtct output is saved. For each image, a directory named after the image is created within the output directory. Ouput files of \code{mindtct} are saved as \verb{out.*} in their corresponding directory.}
 
-\item{silent}{whether or not to hide messages. Default is FALSE.}
-
 \item{options}{flags and options to pass to the \code{mindtct} program.}
+
+\item{silent}{whether or not to hide messages. Default is FALSE.}
 
 \item{mc.cores}{Optional number of cores accross which to parallelize execution. Default is 1 (no parallelization).}
 }
