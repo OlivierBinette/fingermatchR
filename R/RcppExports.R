@@ -48,7 +48,7 @@ print_fmr <- function(filepath, type) {
 #' - "ISONC_2005": ISO/IEC 19794-2:2005 normal card format
 #' - "ISOCC_2005": ISO/IEC 19794-2:2005 compact card format
 #'
-#' @return fingerprint minutiae record as a nested list with the following elements:
+#' @return raw fingerprint minutiae record as a nested list with the following elements (raw, integer or string types):
 #' - format_std
 #' - product_identifier_owner
 #' - product_identifier_type
@@ -82,7 +82,9 @@ print_fmr <- function(filepath, type) {
 #'
 #' @note This R package is based on [NIST's BiomDI software](https://www.nist.gov/services-resources/software/biomdi-software-tools-supporting-standard-biometric-data-interchange) and includes the
 #' libfmr C library. This function is adapted from the prfmr program.
-#'
+#' 
+#' @note The nested list contains elements of raw type. Make sure to use `as.integer()` in order to convert to integer values. 
+#' 
 #' @export
 read_fmr_raw <- function(filepath, type) {
     .Call(`_fingermatchR_read_fmr_raw`, filepath, type)

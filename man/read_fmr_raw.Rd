@@ -20,7 +20,7 @@ record (e.g. a "*.ist" file).}
 }}
 }
 \value{
-fingerprint minutiae record as a nested list with the following elements:
+raw fingerprint minutiae record as a nested list with the following elements (raw, integer or string types):
 \itemize{
 \item format_std
 \item product_identifier_owner
@@ -67,4 +67,6 @@ are older standards which may not be compatible with recent corrections.
 \note{
 This R package is based on \href{https://www.nist.gov/services-resources/software/biomdi-software-tools-supporting-standard-biometric-data-interchange}{NIST's BiomDI software} and includes the
 libfmr C library. This function is adapted from the prfmr program.
+
+The nested list contains elements of raw type. Make sure to use \code{as.integer()} in order to convert to integer values.
 }
