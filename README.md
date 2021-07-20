@@ -15,7 +15,10 @@ MINDTCT and BOZORTH3 algorithms, as released in [NIST’s Biometrics Image
 Software suite
 (NBIS)](https://www.nist.gov/services-resources/software/nist-biometric-image-software-nbis).
 It also provides R bindings to the [FingerJet minutiae extraction
-tool](https://github.com/FingerJetFXOSE/FingerJetFXOSE).
+tool](https://github.com/FingerJetFXOSE/FingerJetFXOSE) and to
+[libfmr](https://www.nist.gov/services-resources/software/biomdi-software-tools-supporting-standard-biometric-data-interchange)
+to parse ANSI/INCITS 378-2004 and ISO/IEC 19794-2 fingerprint minutiae
+records.
 
 ## Installation
 
