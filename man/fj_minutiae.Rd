@@ -4,13 +4,7 @@
 \alias{fj_minutiae}
 \title{FingerJet Minutiae Extractor}
 \usage{
-fj_minutiae(
-  imgfiles,
-  outputdir = ".",
-  silent = FALSE,
-  options = "",
-  mc.cores = 1
-)
+fj_minutiae(imgfiles, outputdir = ".", options = "", mc.cores = 1)
 }
 \description{
 FingerJet Minutiae Extractor
